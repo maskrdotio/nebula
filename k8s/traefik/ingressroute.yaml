@@ -1,0 +1,35 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nebula
+  labels:
+    app: nebula
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`nebula.example.com`)  # Change to your domain
+      kind: Rule
+      services:
+        - name: nebula
+          port: 80
+      middlewares:
+        - name: nebula-headers
+  tls:
+    certResolver: letsencrypt  # Or use secretName for existing cert
+    # secretName: nebula-tls
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: nebula-headers
+  labels:
+    app: nebula
+spec:
+  headers:
+    frameDeny: true
+    contentTypeNosniff: true
+    browserXssFilter: true
+    referrerPolicy: "strict-origin-when-cross-origin"
+    customResponseHeaders:
+      X-Robots-Tag: "noindex,nofollow"

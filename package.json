@@ -1,0 +1,45 @@
+{
+  "name": "nebula",
+  "version": "0.1.0",
+  "description": "A modern S3 browser for Ceph RGW",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@aws-crypto/sha256-browser": "^5.2.0",
+    "@aws-crypto/sha256-js": "^5.2.0",
+    "@aws-sdk/client-s3": "^3.750.0",
+    "@aws-sdk/lib-storage": "^3.966.0",
+    "@aws-sdk/s3-request-presigner": "^3.750.0",
+    "@nuxtjs/i18n": "^10.2.1",
+    "@pinia/nuxt": "^0.11.3",
+    "@smithy/protocol-http": "^5.0.0",
+    "@smithy/signature-v4": "^5.0.0",
+    "@vueuse/core": "^14.1.0",
+    "@vueuse/nuxt": "^14.1.0",
+    "chart.js": "^4.5.1",
+    "lucide-vue-next": "^0.562.0",
+    "nuxt": "^4.2.2",
+    "pinia": "^3.0.4",
+    "shiki": "^3.21.0",
+    "vue": "^3.5.0",
+    "vue-chartjs": "^5.3.3",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.12.1",
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0",
+    "vue-tsc": "^3.2.2"
+  },
+  "packageManager": "pnpm@10.28.0"
+}

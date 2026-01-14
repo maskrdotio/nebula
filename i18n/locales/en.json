@@ -1,0 +1,821 @@
+{
+  "app": {
+    "name": "Nebula",
+    "tagline": "A modern S3 browser designed for Ceph RGW"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "buckets": "Buckets",
+    "users": "Users",
+    "analytics": "Analytics",
+    "connection": "Connection",
+    "collapse": "Collapse"
+  },
+  "common": {
+    "actions": {
+      "create": "Create",
+      "cancel": "Cancel",
+      "save": "Save",
+      "delete": "Delete",
+      "refresh": "Refresh",
+      "upload": "Upload",
+      "download": "Download",
+      "close": "Close",
+      "try_again": "Try Again",
+      "clear": "Clear",
+      "add": "Add",
+      "remove": "Remove",
+      "copy": "Copy",
+      "browse": "Browse",
+      "view_all": "View all",
+      "load_more": "Load more...",
+      "clear_filters": "Clear filters",
+      "clear_completed": "Clear completed",
+      "clear_all": "Clear all"
+    },
+    "status": {
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "active": "Active",
+      "suspended": "Suspended",
+      "healthy": "Healthy",
+      "degraded": "Degraded",
+      "unhealthy": "Unhealthy",
+      "unknown": "Unknown",
+      "loading": "Loading...",
+      "pending": "Pending",
+      "uploading": "Uploading",
+      "completed": "Completed",
+      "failed": "Failed",
+      "cancelled": "Cancelled"
+    },
+    "errors": {
+      "access_denied": "Access Denied",
+      "not_found": "Not Found",
+      "unknown": "An unknown error occurred",
+      "failed_to_load": "Failed to load {item}",
+      "connection_failed": "Connection failed",
+      "permission_denied": "You do not have permission to perform this action"
+    },
+    "time": {
+      "just_now": "Just now",
+      "minutes_ago": "{n} min ago | {n} mins ago",
+      "hours_ago": "{n} hour ago | {n} hours ago",
+      "days_ago": "{n} day ago | {n} days ago",
+      "weeks_ago": "{n} week ago | {n} weeks ago",
+      "months_ago": "{n} month ago | {n} months ago",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "created": "Created"
+    },
+    "labels": {
+      "name": "Name",
+      "size": "Size",
+      "modified": "Modified",
+      "owner": "Owner",
+      "status": "Status",
+      "type": "Type",
+      "details": "Details",
+      "key": "Key",
+      "value": "Value",
+      "none": "None",
+      "default": "Default",
+      "unlimited": "Unlimited",
+      "total": "total",
+      "of": "of",
+      "by": "by",
+      "items": "item | items",
+      "objects": "objects",
+      "filtered": "filtered",
+      "more_available": "more available",
+      "selected": "selected",
+      "cluster_wide": "cluster-wide",
+      "owned_by_you": "owned by you"
+    },
+    "units": {
+      "bytes": "B",
+      "kilobytes": "KB",
+      "megabytes": "MB",
+      "gigabytes": "GB",
+      "terabytes": "TB",
+      "petabytes": "PB"
+    },
+    "empty": "(empty)"
+  },
+  "health": {
+    "status_tooltip": "Status: {status}",
+    "response_time": "{time}ms",
+    "ceph_version": "Ceph {version}"
+  },
+  "connection": {
+    "title": "Connect to your Ceph RGW cluster",
+    "sections": {
+      "presets": "Server Presets",
+      "saved": "Saved Connections",
+      "other": "Other Options"
+    },
+    "new_connection": "New Connection",
+    "preset": {
+      "proxied": "Proxied",
+      "credentials_required": "Credentials required",
+      "enter_credentials_for": "Enter credentials for"
+    },
+    "saved": {
+      "edit": "Edit",
+      "editing": "Editing connection",
+      "delete": "Delete",
+      "delete_confirm": "Remove this saved connection?",
+      "never_used": "Never used",
+      "just_now": "Just now",
+      "minutes_ago": "{count} min ago",
+      "hours_ago": "{count} hours ago",
+      "days_ago": "{count} days ago"
+    },
+    "form": {
+      "name_label": "Connection Name",
+      "name_placeholder": "My RGW Server",
+      "name_hint": "Optional display name for this connection",
+      "endpoint_label": "Endpoint URL",
+      "endpoint_hint": "Your Ceph RGW S3 endpoint",
+      "access_key_label": "Access Key",
+      "secret_key_label": "Secret Key",
+      "region_label": "Signing Region",
+      "region_hint": "Used for AWS v4 request signing. Keep 'us-east-1' for most Ceph RGW setups.",
+      "path_style_label": "Path-style addressing",
+      "path_style_description": "Required for most Ceph RGW deployments",
+      "use_proxy_label": "Use server proxy",
+      "use_proxy_description": "Route S3 requests through the server (useful for CORS restrictions)",
+      "remember_label": "Remember this connection"
+    },
+    "security_warning": "Credentials will be stored in your browser's local storage. Only use this on trusted devices.",
+    "button": {
+      "connect": "Connect",
+      "testing": "Testing Connection...",
+      "connected": "Connected",
+      "save": "Save Changes",
+      "saved": "Saved"
+    },
+    "success": "Connected successfully. Redirecting...",
+    "error": {
+      "fill_required": "Please fill in all required fields",
+      "failed": "Connection failed"
+    },
+    "backend": {
+      "ceph-rgw-admin": "Ceph RGW",
+      "ceph-rgw": "Ceph RGW (limited)",
+      "s3-compatible": "S3 Compatible",
+      "unknown": "Detecting..."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "detecting_capabilities": "Detecting capabilities...",
+    "my_buckets": {
+      "title": "My Buckets",
+      "empty": "No buckets yet",
+      "create_button": "Create a bucket",
+      "total_buckets": "Total Buckets"
+    },
+    "cluster_overview": {
+      "title": "Cluster Overview",
+      "total_buckets": "Total Buckets",
+      "total_objects": "Total Objects",
+      "total_size": "Total Size",
+      "unique_owners": "Unique Owners"
+    },
+    "users": {
+      "title": "Users",
+      "total_users": "Total Users",
+      "top_by_storage": "Top Users by Storage"
+    },
+    "usage": {
+      "title": "Usage",
+      "bytes_received": "Bytes Received",
+      "bytes_sent": "Bytes Sent",
+      "total_operations": "Total Operations",
+      "successful": "Successful"
+    },
+    "zone": {
+      "title": "Zone",
+      "zone_name": "Zone Name",
+      "realm": "Realm",
+      "single_zone": "Single zone",
+      "multi_site": "Multi-site enabled"
+    }
+  },
+  "permissions": {
+    "read_only": "Read-only",
+    "permission_denied": "Permission denied",
+    "no_view_permission": "You don't have permission to view this setting.",
+    "no_edit_permission": "You don't have permission to modify this setting."
+  },
+  "buckets": {
+    "title": "Buckets",
+    "view_modes": {
+      "my_buckets": "My Buckets",
+      "all_buckets": "All Buckets"
+    },
+    "empty": {
+      "title": "No buckets yet",
+      "description": "Create your first bucket to start storing objects in your Ceph RGW cluster."
+    },
+    "count": "{n} bucket | {n} buckets",
+    "admin_api_warning": "Showing buckets accessible via S3 API instead.",
+    "card": {
+      "click_to_browse": "Click to browse",
+      "copy_arn": "Copy ARN",
+      "delete_bucket": "Delete bucket"
+    },
+    "create": {
+      "title": "Create Bucket",
+      "description": "Create a new S3 bucket to store your objects.",
+      "name_label": "Bucket Name",
+      "name_hint": "Lowercase letters, numbers, hyphens, and periods only",
+      "advanced_options": "Advanced options",
+      "owner": {
+        "label": "Owner",
+        "loading": "Loading users...",
+        "default": "Current user (default)",
+        "hint": "Select which user will own this bucket"
+      },
+      "placement": {
+        "label": "Placement Target",
+        "loading": "Loading placement targets...",
+        "default": "Default (cluster default)",
+        "pool_suffix": "pool: {pool}",
+        "no_targets": "Default placement (no targets found)",
+        "hint_with_targets": "Choose a specific storage pool/placement for this bucket",
+        "hint_default": "Using cluster default placement"
+      },
+      "versioning": {
+        "label": "Enable Versioning",
+        "description": "Keep multiple versions of objects in this bucket"
+      },
+      "object_lock": {
+        "label": "Object Locking (WORM)",
+        "description": "Enable write-once-read-many protection. Cannot be changed after bucket creation.",
+        "warning": "Object Lock requires versioning and cannot be disabled once enabled"
+      },
+      "encryption": {
+        "label": "Server-Side Encryption",
+        "none": "None",
+        "sse_s3": "SSE-S3 (AES-256)",
+        "sse_kms": "SSE-KMS",
+        "none_description": "Objects will not be encrypted at rest",
+        "sse_s3_description": "Objects encrypted with S3-managed keys",
+        "sse_kms_description": "Objects encrypted with KMS-managed keys",
+        "kms_key_label": "KMS Key ID (optional)",
+        "kms_key_hint": "Leave empty to use the default KMS key"
+      },
+      "tags": {
+        "label": "Tags",
+        "hint": "Add key-value tags to organize and identify your bucket"
+      },
+      "acl": {
+        "label": "Access Control",
+        "private": {
+          "label": "Private",
+          "description": "Owner gets FULL_CONTROL. No one else has access rights."
+        },
+        "public_read": {
+          "label": "Public Read",
+          "description": "Owner gets FULL_CONTROL. Everyone else gets READ access."
+        },
+        "public_read_write": {
+          "label": "Public Read/Write",
+          "description": "Owner gets FULL_CONTROL. Everyone else gets READ and WRITE access."
+        },
+        "authenticated_read": {
+          "label": "Authenticated Read",
+          "description": "Owner gets FULL_CONTROL. Authenticated users get READ access."
+        }
+      },
+      "button": "Create Bucket",
+      "validation": {
+        "min_length": "Bucket name must be at least 3 characters",
+        "max_length": "Bucket name must be 63 characters or less",
+        "start_char": "Bucket name must start with a lowercase letter or number",
+        "end_char": "Bucket name must end with a lowercase letter or number",
+        "no_uppercase": "Bucket name must not contain uppercase letters",
+        "allowed_chars": "Bucket name can only contain lowercase letters, numbers, hyphens, and periods",
+        "no_consecutive_periods": "Bucket name must not contain consecutive periods",
+        "no_ip_format": "Bucket name must not be formatted as an IP address"
+      },
+      "error": "Failed to create bucket"
+    },
+    "delete": {
+      "title": "Delete Bucket",
+      "warning": "This action cannot be undone. The bucket must be empty before it can be deleted.",
+      "label": "Bucket to delete:",
+      "confirm_label": "Type the bucket name to confirm",
+      "button": "Delete Bucket",
+      "error": "Failed to delete bucket"
+    },
+    "settings": {
+      "title": "Bucket Settings: {bucket}",
+      "versioning": {
+        "tab": "Versioning",
+        "title": "Versioning",
+        "loading": "Loading versioning status...",
+        "current_status": "Current Status",
+        "enabled_description": "Object versions are being preserved",
+        "suspended_description": "Versioning was enabled but is now suspended",
+        "disabled_description": "Versioning has never been enabled",
+        "warning": "Once versioning is enabled, it cannot be disabled — only suspended. Suspending versioning does not delete existing versions.",
+        "enable": "Enable Versioning",
+        "suspend": "Suspend Versioning"
+      },
+      "object_lock": {
+        "tab": "Object Lock",
+        "title": "Object Lock (WORM)",
+        "loading": "Loading Object Lock settings...",
+        "enabled": "Object Lock Enabled",
+        "not_enabled": "Object Lock Not Enabled",
+        "enabled_description": "This bucket has Object Lock enabled. Objects cannot be deleted or overwritten.",
+        "not_enabled_description": "Object Lock can only be enabled at bucket creation time.",
+        "retention_title": "Default Retention Settings",
+        "retention_mode_label": "Retention Mode",
+        "no_retention": "No default retention",
+        "governance": "Governance (can be overridden with permissions)",
+        "compliance": "Compliance (cannot be overridden)",
+        "retention_days_label": "Retention Days",
+        "retention_days_hint": "Number of days to retain objects",
+        "retention_years_label": "Retention Years",
+        "retention_years_hint": "Number of years to retain objects",
+        "retention_hint": "Specify either days or years for retention period, not both.",
+        "save_button": "Save Retention Settings"
+      },
+      "encryption": {
+        "tab": "Encryption",
+        "title": "Server-Side Encryption",
+        "loading": "Loading encryption settings...",
+        "type_label": "Encryption Type",
+        "none": "None (no encryption at rest)",
+        "sse_s3": "SSE-S3 (AES-256 managed by S3)",
+        "sse_kms": "SSE-KMS (AWS Key Management Service)",
+        "kms_key_label": "KMS Key ID (optional)",
+        "kms_key_hint": "Leave empty to use the default KMS key",
+        "save_button": "Save Encryption Settings"
+      },
+      "lifecycle": {
+        "tab": "Lifecycle",
+        "title": "Lifecycle Rules",
+        "loading": "Loading lifecycle rules...",
+        "add_rule": "Add Rule",
+        "empty": {
+          "title": "No lifecycle rules configured",
+          "description": "Add rules to automatically expire or transition objects"
+        },
+        "form": {
+          "rule_id_label": "Rule ID",
+          "prefix_label": "Prefix (optional)",
+          "expiration_label": "Expiration (days)",
+          "status_label": "Status"
+        },
+        "rule": {
+          "prefix": "Prefix: {prefix}",
+          "expires_after": "Expires after {days} days",
+          "noncurrent_expires": "Noncurrent versions expire after {days} days"
+        },
+        "delete_confirm": "Delete lifecycle rule \"{ruleId}\"?"
+      },
+      "tags": {
+        "tab": "Tags",
+        "title": "Bucket Tags",
+        "loading": "Loading tags...",
+        "empty": "No tags configured",
+        "add_title": "Add a new tag",
+        "save_button": "Save Tags"
+      },
+      "policy": {
+        "tab": "Policy",
+        "title": "Bucket Policy",
+        "loading": "Loading bucket policy...",
+        "invalid_json": "Invalid JSON",
+        "edit_hint": "Edit the policy JSON above",
+        "no_policy_hint": "No policy configured. Add a policy to control bucket access.",
+        "save_button": "Save Policy",
+        "delete_button": "Delete Policy"
+      },
+      "acl": {
+        "tab": "ACL",
+        "title": "Access Control List",
+        "loading": "Loading ACL...",
+        "owner": "Owner",
+        "grants": "Grants",
+        "grantee_types": {
+          "everyone": "Everyone (Public)",
+          "authenticated": "Authenticated Users"
+        },
+        "hint": "ACL grants can be modified using canned ACLs via the S3 API. For fine-grained control, use bucket policies."
+      },
+      "quota": {
+        "tab": "Quota",
+        "title": "Bucket Quota",
+        "loading": "Loading quota settings...",
+        "admin_required": "Admin capability required",
+        "admin_required_description": "Bucket quota management requires RGW admin capabilities (buckets:read/write).",
+        "current_quota": "Current Quota",
+        "max_size": "Max Size",
+        "max_objects": "Max Objects",
+        "enable_quota": "Enable Quota",
+        "enable_quota_description": "Limit the maximum size and number of objects in this bucket",
+        "max_size_gb_label": "Max Size (GB)",
+        "max_objects_label": "Max Objects",
+        "unlimited_hint": "Leave empty for unlimited",
+        "save_button": "Save Quota Settings"
+      }
+    }
+  },
+  "browser": {
+    "go_back": "Go back",
+    "back_to_buckets": "Back to Buckets",
+    "filter_placeholder": "Filter...",
+    "bucket_settings": "Bucket Settings",
+    "access_denied": {
+      "title": "Access Denied",
+      "description": "You don't have permission to view objects in this bucket. This may be because the bucket belongs to another user or your credentials don't have the required permissions."
+    },
+    "empty": {
+      "title": "This folder is empty",
+      "description": "Upload files or create folders to get started.",
+      "action": "Upload Files"
+    },
+    "no_matches": {
+      "title": "No matches found",
+      "description": "No files or folders match '{query}'"
+    },
+    "table": {
+      "name": "Name",
+      "size": "Size",
+      "modified": "Modified"
+    },
+    "actions": {
+      "download": "Download",
+      "copy_url": "Copy URL",
+      "copy_s3_uri": "Copy S3 URI",
+      "delete": "Delete"
+    },
+    "drag_drop": {
+      "title": "Drop files here",
+      "description": "Files will be uploaded to {path}"
+    },
+    "delete_progress": "Deleting {current}/{total}...",
+    "delete_confirm": "Are you sure you want to delete \"{name}\"?",
+    "delete_confirm_multiple": "Are you sure you want to delete {n} file? | Are you sure you want to delete {n} files?",
+    "delete_partial_success": "Deleted {success} file(s), but {failed} failed",
+    "preview": {
+      "not_available": "Preview not available for this file type",
+      "video_not_supported": "Your browser does not support video playback.",
+      "audio_not_supported": "Your browser does not support audio playback.",
+      "details": "Details",
+      "size": "Size",
+      "last_modified": "Last Modified",
+      "etag": "ETag",
+      "storage_class": "Storage Class",
+      "s3_uri": "S3 URI",
+      "copy_url": "Copy URL",
+      "copy_uri": "Copy URI"
+    },
+    "stats": {
+      "loading": "Loading stats...",
+      "bucket": "Bucket",
+      "bucket_total_size": "Bucket Total Size",
+      "this_folder": "This Folder",
+      "bucket_owner": "Bucket Owner",
+      "total_objects": "Total Objects",
+      "total_size": "Total Size",
+      "last_modified": "Last Modified",
+      "quota_usage": "Quota Usage"
+    }
+  },
+  "objects": {
+    "filter_placeholder": "Filter...",
+    "go_back": "Go back",
+    "empty_folder": {
+      "title": "This folder is empty",
+      "description": "Upload files or create a new folder to get started."
+    },
+    "no_matches": {
+      "title": "No matches found",
+      "description": "Try adjusting your search filter."
+    },
+    "row": {
+      "download": "Download",
+      "copy_url": "Copy URL",
+      "copy_s3_uri": "Copy S3 URI",
+      "delete": "Delete"
+    },
+    "delete": {
+      "title": "Delete File",
+      "title_bulk": "Delete Files",
+      "warning": "This action cannot be undone. The file will be permanently deleted.",
+      "warning_bulk": "This action cannot be undone. All selected files will be permanently deleted.",
+      "file": "File",
+      "folder": "Folder",
+      "items_count": "{n} file | {n} files",
+      "cannot_undo": "This action cannot be undone",
+      "button": "Delete",
+      "button_bulk": "Delete {n} file | Delete {n} files"
+    },
+    "time": {
+      "just_now": "Just now",
+      "mins_ago": "{n} min ago | {n} mins ago",
+      "hours_ago": "{n} hour ago | {n} hours ago",
+      "days_ago": "{n} day ago | {n} days ago",
+      "weeks_ago": "{n} week ago | {n} weeks ago"
+    },
+    "preview": {
+      "expand": "Expand (Space)",
+      "open_new_tab": "Open in New Tab",
+      "close": "Close",
+      "double_click_expand": "Double-click to expand",
+      "double_click_full_size": "Double-click to view full size",
+      "preview_not_available": "Preview not available for this file type",
+      "video_not_supported": "Video streaming not supported with presigned URLs",
+      "video_not_supported_full": "Video streaming is not supported with presigned URLs due to Range request restrictions.",
+      "audio_not_supported": "Your browser does not support audio playback.",
+      "failed_to_load_image": "Failed to load image",
+      "open": "Open",
+      "open_in_browser": "Open in Browser",
+      "download": "Download",
+      "download_instead": "Download Instead",
+      "copy_url": "Copy URL",
+      "copy_uri": "Copy URI",
+      "details": "Details",
+      "size": "Size",
+      "last_modified": "Last Modified",
+      "etag": "ETag",
+      "storage_class": "Storage Class",
+      "s3_uri": "S3 URI",
+      "zoom_out": "Zoom Out (-)",
+      "zoom_in": "Zoom In (+)",
+      "rotate": "Rotate",
+      "previous": "Previous (Left Arrow)",
+      "next": "Next (Right Arrow)",
+      "close_esc": "Close (Esc)",
+      "navigate": "Navigate",
+      "zoom": "Zoom"
+    },
+    "code_preview": {
+      "file_too_large": "File too large to preview",
+      "exceeds_limit": "{size} MB exceeds the {limit} MB limit",
+      "loading_content": "Loading content...",
+      "file_truncated": "File truncated. Download to see full content.",
+      "preparing_preview": "Preparing preview..."
+    }
+  },
+  "uploads": {
+    "title": "Uploads",
+    "active": "({n} active)",
+    "done": "{n} done",
+    "failed": "{n} failed",
+    "no_uploads": "No uploads",
+    "cancel": "Cancel",
+    "remove": "Remove"
+  },
+  "users": {
+    "title": "Users",
+    "search_placeholder": "Search users...",
+    "empty": {
+      "title": "No users yet",
+      "description": "Create your first user to get started."
+    },
+    "create_error": "Failed to create user",
+    "no_permission": {
+      "title": "Access Denied",
+      "description": "You do not have permission to view users.",
+      "capability_required": "Requires {cap} capability."
+    },
+    "empty": "No users found",
+    "table": {
+      "user": "User",
+      "display_name": "Display Name",
+      "status": "Status",
+      "objects": "Objects",
+      "storage": "Storage",
+      "max_buckets": "Max Buckets"
+    },
+    "count": "{n} user | {n} users",
+    "filtered_from": "filtered from {total}",
+    "pagination": {
+      "showing": "Showing {from} to {to} of {total} users",
+      "page": "Page {current} of {total}"
+    },
+    "detail": {
+      "user_information": "User Information",
+      "user_id": "User ID",
+      "copy_user_id": "Copy user ID",
+      "display_name": "Display Name",
+      "email": "Email",
+      "tenant": "Tenant",
+      "max_buckets": "Max Buckets",
+      "capabilities": "Capabilities",
+      "none": "None",
+      "account_status": "Account Status",
+      "active_description": "This user can access resources normally.",
+      "suspended_description": "This user is currently suspended and cannot access resources.",
+      "enable_user": "Enable User",
+      "suspend_user": "Suspend User",
+      "quotas": {
+        "title": "Quotas",
+        "user_quota": "User Quota",
+        "bucket_quota": "Bucket Quota (Default)",
+        "max_size": "Max Size",
+        "max_objects": "Max Objects",
+        "current_usage": "Current Usage",
+        "storage_used": "Storage Used"
+      },
+      "access_keys": {
+        "title": "Access Keys",
+        "empty": "No access keys",
+        "key_number": "Key {n}",
+        "copy_access_key": "Copy access key",
+        "secret_hidden": "Secret key is not displayed for security reasons."
+      },
+      "buckets": {
+        "title": "Buckets",
+        "empty": "No buckets owned by this user"
+      }
+    },
+    "create": {
+      "title": "Create User",
+      "description": "Create a new RGW user with S3 credentials.",
+      "button": "Create User",
+      "basic_info": "Basic Information",
+      "user_id": {
+        "label": "User ID",
+        "hint": "Lowercase letters, numbers, and hyphens only (1-64 chars)",
+        "validation": {
+          "required": "User ID is required",
+          "max_length": "User ID must be 64 characters or less",
+          "start_char": "User ID must start with a lowercase letter or number",
+          "allowed_chars": "User ID can only contain lowercase letters, numbers, and hyphens",
+          "no_spaces": "User ID cannot contain spaces"
+        }
+      },
+      "tenant": {
+        "show": "Show Tenant",
+        "label": "Tenant",
+        "hint": "Optional tenant namespace for multi-tenancy"
+      },
+      "display_name": {
+        "label": "Display Name",
+        "validation": {
+          "required": "Display name is required"
+        }
+      },
+      "email": {
+        "label": "Email",
+        "validation": {
+          "invalid": "Please enter a valid email address"
+        }
+      },
+      "max_buckets": {
+        "label": "Max Buckets",
+        "unlimited": "Unlimited",
+        "custom": "Custom"
+      },
+      "suspended": {
+        "label": "Suspended",
+        "tooltip": "User will be created but cannot access resources"
+      },
+      "system_user": {
+        "label": "System User",
+        "tooltip": "System users have elevated privileges"
+      },
+      "credentials": {
+        "section": "S3 Credentials",
+        "auto_generate": "Auto-generate key",
+        "access_key": {
+          "label": "Access Key",
+          "validation": {
+            "min_length": "Access key should be at least 16 characters"
+          }
+        },
+        "secret_key": {
+          "label": "Secret Key",
+          "validation": {
+            "min_length": "Secret key should be at least 32 characters"
+          }
+        }
+      },
+      "user_quota": {
+        "section": "User Quota",
+        "enable": "Enable user quota",
+        "max_size": "Max Size",
+        "max_objects": "Max Objects"
+      },
+      "bucket_quota": {
+        "section": "Bucket Quota (Default)",
+        "enable": "Enable bucket quota",
+        "max_size": "Max Size",
+        "max_objects": "Max Objects"
+      },
+      "capabilities": {
+        "section": "Capabilities (Advanced)",
+        "no_permission": "You cannot assign capabilities. Your account does not have grantable admin capabilities.",
+        "hint": "You can grant capabilities up to your own permission level.",
+        "types": {
+          "buckets": "Buckets",
+          "users": "Users",
+          "usage": "Usage",
+          "metadata": "Metadata",
+          "zone": "Zone"
+        },
+        "permissions": {
+          "none": "None",
+          "read": "Read",
+          "write": "Write",
+          "full": "Full Access"
+        }
+      }
+    },
+    "credentials_modal": {
+      "title": "User Created Successfully",
+      "warning_title": "Save these credentials now",
+      "warning_description": "The secret key cannot be retrieved later. Make sure to save it in a secure location.",
+      "credentials_section": "S3 Credentials",
+      "access_key": "Access Key",
+      "secret_key": "Secret Key",
+      "copy": "Copy",
+      "copied": "Copied",
+      "not_available": "(not available)",
+      "no_credentials": "No credentials generated for this user.",
+      "done": "Done"
+    }
+  },
+  "analytics": {
+    "title": "Analytics",
+    "unavailable": {
+      "title": "Usage Analytics Unavailable",
+      "description": "Your account doesn't have the 'usage:read' capability required to view analytics."
+    },
+    "filters": {
+      "title": "Filters",
+      "period": {
+        "label": "Period",
+        "all_time": "All time",
+        "today": "Today",
+        "last_7_days": "Last 7 days",
+        "last_30_days": "Last 30 days"
+      },
+      "user": {
+        "label": "User",
+        "all_users": "All users"
+      },
+      "bucket": {
+        "label": "Bucket",
+        "all_buckets": "All buckets"
+      }
+    },
+    "summary": {
+      "bytes_received": "Bytes Received",
+      "bytes_sent": "Bytes Sent",
+      "total_operations": "Total Operations",
+      "success_rate": "Success Rate"
+    },
+    "charts": {
+      "bandwidth_by_user": "Bandwidth by User",
+      "operations_breakdown": "Operations Breakdown",
+      "no_bandwidth_data": "No bandwidth data available",
+      "no_operations_data": "No operations data available",
+      "received": "Received",
+      "sent": "Sent"
+    },
+    "usage_by_user": {
+      "title": "Usage by User",
+      "table": {
+        "user": "User",
+        "received": "Received",
+        "sent": "Sent",
+        "operations": "Operations",
+        "success_rate": "Success Rate"
+      },
+      "empty": "No user data available"
+    },
+    "operations": {
+      "get_obj": "GET Object",
+      "put_obj": "PUT Object",
+      "delete_obj": "DELETE Object",
+      "list_bucket": "List Bucket",
+      "stat_bucket": "Stat Bucket",
+      "get_acls": "GET ACL",
+      "put_acls": "PUT ACL",
+      "get_cors": "GET CORS",
+      "put_cors": "PUT CORS",
+      "delete_cors": "DELETE CORS",
+      "create_bucket": "Create Bucket",
+      "delete_bucket": "Delete Bucket",
+      "list_buckets": "List Buckets",
+      "head_obj": "HEAD Object",
+      "copy_obj": "COPY Object",
+      "multi_object_delete": "Multi-Delete",
+      "init_multipart": "Init Multipart",
+      "complete_multipart": "Complete Multipart",
+      "abort_multipart": "Abort Multipart",
+      "list_multipart": "List Multipart",
+      "upload_part": "Upload Part"
+    }
+  }
+}

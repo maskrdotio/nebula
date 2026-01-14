@@ -91,10 +91,19 @@ nebula/
 │   ├── types/
 │   │   └── connection.ts    # TypeScript interfaces
 │   └── app.vue
+├── docker/
+│   ├── Dockerfile           # Production container build
+│   └── nginx.conf           # Nginx config (for static builds)
 ├── i18n/
 │   └── locales/
 │       ├── en.json          # English
 │       └── ru.json          # Russian
+├── k8s/
+│   ├── deployment.yaml      # Kubernetes deployment
+│   ├── service.yaml         # ClusterIP service
+│   ├── ingress.yaml         # Standard ingress
+│   ├── traefik/             # Traefik IngressRoute variant
+│   └── external-secrets/    # External Secrets Operator variant
 ├── server/
 │   ├── api/
 │   │   ├── config/

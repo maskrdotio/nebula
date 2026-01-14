@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.output/
+.nuxt/
+dist/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Documentation
+*.md
+!README.md
+
+# GitHub
+.github/
+
+# Misc
+.editorconfig
+.eslintcache
+coverage/

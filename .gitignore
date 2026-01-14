@@ -12,6 +12,9 @@ dist/
 .env.*
 !.env.example
 
+# Kubernetes secrets (use secrets.yaml.example as template)
+k8s/secrets.yaml
+
 # IDE
 .idea/
 .vscode/

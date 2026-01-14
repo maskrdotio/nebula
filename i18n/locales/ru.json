@@ -1,0 +1,821 @@
+{
+  "app": {
+    "name": "Nebula",
+    "tagline": "Современный S3-браузер для Ceph RGW"
+  },
+  "nav": {
+    "dashboard": "Главная",
+    "buckets": "Бакеты",
+    "users": "Пользователи",
+    "analytics": "Статистика",
+    "connection": "Подключение",
+    "collapse": "Свернуть"
+  },
+  "common": {
+    "actions": {
+      "create": "Создать",
+      "cancel": "Отмена",
+      "save": "Сохранить",
+      "delete": "Удалить",
+      "refresh": "Обновить",
+      "upload": "Загрузить",
+      "download": "Скачать",
+      "close": "Закрыть",
+      "try_again": "Попробовать ещё раз",
+      "clear": "Очистить",
+      "add": "Добавить",
+      "remove": "Убрать",
+      "copy": "Копировать",
+      "browse": "Открыть",
+      "view_all": "Показать все",
+      "load_more": "Загрузить ещё...",
+      "clear_filters": "Сбросить фильтры",
+      "clear_completed": "Убрать завершённые",
+      "clear_all": "Очистить всё"
+    },
+    "status": {
+      "enabled": "Включено",
+      "disabled": "Отключено",
+      "active": "Активен",
+      "suspended": "Заблокирован",
+      "healthy": "Работает",
+      "degraded": "Проблемы",
+      "unhealthy": "Не работает",
+      "unknown": "Неизвестно",
+      "loading": "Загрузка...",
+      "pending": "Ожидание",
+      "uploading": "Загружается",
+      "completed": "Готово",
+      "failed": "Ошибка",
+      "cancelled": "Отменено"
+    },
+    "errors": {
+      "access_denied": "Доступ запрещён",
+      "not_found": "Не найдено",
+      "unknown": "Что-то пошло не так",
+      "failed_to_load": "Не удалось загрузить {item}",
+      "connection_failed": "Не удалось подключиться",
+      "permission_denied": "Недостаточно прав для этого действия"
+    },
+    "time": {
+      "just_now": "Только что",
+      "minutes_ago": "{n} мин назад",
+      "hours_ago": "{n} ч назад",
+      "days_ago": "{n} д назад",
+      "weeks_ago": "{n} нед назад",
+      "months_ago": "{n} мес назад",
+      "today": "Сегодня",
+      "yesterday": "Вчера",
+      "created": "Создано"
+    },
+    "labels": {
+      "name": "Название",
+      "size": "Размер",
+      "modified": "Изменён",
+      "owner": "Владелец",
+      "status": "Статус",
+      "type": "Тип",
+      "details": "Подробнее",
+      "key": "Ключ",
+      "value": "Значение",
+      "none": "Нет",
+      "default": "По умолчанию",
+      "unlimited": "Без лимита",
+      "total": "всего",
+      "of": "из",
+      "by": "от",
+      "items": "элемент | элементов",
+      "objects": "объектов",
+      "filtered": "отфильтровано",
+      "more_available": "ещё доступно",
+      "selected": "выбрано",
+      "cluster_wide": "весь кластер",
+      "owned_by_you": "ваш"
+    },
+    "units": {
+      "bytes": "Б",
+      "kilobytes": "КБ",
+      "megabytes": "МБ",
+      "gigabytes": "ГБ",
+      "terabytes": "ТБ",
+      "petabytes": "ПБ"
+    },
+    "empty": "(пусто)"
+  },
+  "health": {
+    "status_tooltip": "Статус: {status}",
+    "response_time": "{time} мс",
+    "ceph_version": "Ceph {version}"
+  },
+  "connection": {
+    "title": "Подключение к Ceph RGW",
+    "sections": {
+      "presets": "Преднастройки сервера",
+      "saved": "Сохранённые подключения",
+      "other": "Другие варианты"
+    },
+    "new_connection": "Новое подключение",
+    "preset": {
+      "proxied": "Проксируется",
+      "credentials_required": "Нужны ключи",
+      "enter_credentials_for": "Введите ключи для"
+    },
+    "saved": {
+      "edit": "Изменить",
+      "editing": "Редактирование подключения",
+      "delete": "Удалить",
+      "delete_confirm": "Удалить это подключение?",
+      "never_used": "Не использовалось",
+      "just_now": "Только что",
+      "minutes_ago": "{count} мин назад",
+      "hours_ago": "{count} ч назад",
+      "days_ago": "{count} д назад"
+    },
+    "form": {
+      "name_label": "Название подключения",
+      "name_placeholder": "Мой RGW сервер",
+      "name_hint": "Необязательное имя для этого подключения",
+      "endpoint_label": "Адрес сервера",
+      "endpoint_hint": "URL вашего Ceph RGW",
+      "access_key_label": "Access Key",
+      "secret_key_label": "Secret Key",
+      "region_label": "Регион для подписи",
+      "region_hint": "Для подписи AWS v4. В большинстве случаев оставьте 'us-east-1'.",
+      "path_style_label": "Path-style адресация",
+      "path_style_description": "Нужно для большинства Ceph RGW",
+      "use_proxy_label": "Использовать прокси сервера",
+      "use_proxy_description": "Направлять S3 запросы через сервер (полезно для обхода CORS)",
+      "remember_label": "Запомнить подключение"
+    },
+    "security_warning": "Данные для входа сохранятся в браузере. Используйте только на своих устройствах.",
+    "button": {
+      "connect": "Подключиться",
+      "testing": "Проверяем...",
+      "connected": "Подключено",
+      "save": "Сохранить",
+      "saved": "Сохранено"
+    },
+    "success": "Готово! Переходим...",
+    "error": {
+      "fill_required": "Заполните все обязательные поля",
+      "failed": "Не удалось подключиться"
+    },
+    "backend": {
+      "ceph-rgw-admin": "Ceph RGW",
+      "ceph-rgw": "Ceph RGW (ограничен)",
+      "s3-compatible": "S3 совместимый",
+      "unknown": "Определяем..."
+    }
+  },
+  "dashboard": {
+    "title": "Главная",
+    "detecting_capabilities": "Проверяем права доступа...",
+    "my_buckets": {
+      "title": "Мои бакеты",
+      "empty": "Бакетов пока нет",
+      "create_button": "Создать бакет",
+      "total_buckets": "Всего бакетов"
+    },
+    "cluster_overview": {
+      "title": "Обзор кластера",
+      "total_buckets": "Бакетов",
+      "total_objects": "Объектов",
+      "total_size": "Занято",
+      "unique_owners": "Владельцев"
+    },
+    "users": {
+      "title": "Пользователи",
+      "total_users": "Всего",
+      "top_by_storage": "Топ по объёму данных"
+    },
+    "usage": {
+      "title": "Трафик",
+      "bytes_received": "Получено",
+      "bytes_sent": "Отправлено",
+      "total_operations": "Операций",
+      "successful": "Успешных"
+    },
+    "zone": {
+      "title": "Зона",
+      "zone_name": "Название",
+      "realm": "Realm",
+      "single_zone": "Одна зона",
+      "multi_site": "Multi-site"
+    }
+  },
+  "permissions": {
+    "read_only": "Только чтение",
+    "permission_denied": "Доступ запрещён",
+    "no_view_permission": "У вас нет прав на просмотр этой настройки.",
+    "no_edit_permission": "У вас нет прав на изменение этой настройки."
+  },
+  "buckets": {
+    "title": "Бакеты",
+    "view_modes": {
+      "my_buckets": "Мои бакеты",
+      "all_buckets": "Все бакеты"
+    },
+    "empty": {
+      "title": "Бакетов пока нет",
+      "description": "Создайте первый бакет, чтобы начать хранить файлы."
+    },
+    "count": "{n} бакет | {n} бакетов",
+    "admin_api_warning": "Показаны бакеты, доступные через S3 API.",
+    "card": {
+      "click_to_browse": "Открыть",
+      "copy_arn": "Скопировать ARN",
+      "delete_bucket": "Удалить"
+    },
+    "create": {
+      "title": "Новый бакет",
+      "description": "Создайте S3 бакет для хранения файлов.",
+      "name_label": "Название",
+      "name_hint": "Только строчные буквы, цифры, дефисы и точки",
+      "advanced_options": "Дополнительно",
+      "owner": {
+        "label": "Владелец",
+        "loading": "Загрузка...",
+        "default": "Текущий пользователь",
+        "hint": "Кто будет владельцем бакета"
+      },
+      "placement": {
+        "label": "Placement Target",
+        "loading": "Загрузка...",
+        "default": "По умолчанию",
+        "pool_suffix": "пул: {pool}",
+        "no_targets": "По умолчанию (targets не найдены)",
+        "hint_with_targets": "Выберите пул хранения для бакета",
+        "hint_default": "Используется placement по умолчанию"
+      },
+      "versioning": {
+        "label": "Версионирование",
+        "description": "Хранить все версии объектов"
+      },
+      "object_lock": {
+        "label": "Object Lock (WORM)",
+        "description": "Защита от удаления и перезаписи. Нельзя отключить после создания.",
+        "warning": "Object Lock требует версионирование и не может быть отключён"
+      },
+      "encryption": {
+        "label": "Шифрование",
+        "none": "Нет",
+        "sse_s3": "SSE-S3 (AES-256)",
+        "sse_kms": "SSE-KMS",
+        "none_description": "Данные не шифруются",
+        "sse_s3_description": "Шифрование ключами S3",
+        "sse_kms_description": "Шифрование через KMS",
+        "kms_key_label": "KMS Key ID (опционально)",
+        "kms_key_hint": "Оставьте пустым для ключа по умолчанию"
+      },
+      "tags": {
+        "label": "Теги",
+        "hint": "Теги для организации бакетов"
+      },
+      "acl": {
+        "label": "Доступ",
+        "private": {
+          "label": "Приватный",
+          "description": "Доступ только у владельца."
+        },
+        "public_read": {
+          "label": "Публичное чтение",
+          "description": "Все могут читать, только владелец может писать."
+        },
+        "public_read_write": {
+          "label": "Публичный",
+          "description": "Все могут читать и писать."
+        },
+        "authenticated_read": {
+          "label": "Для авторизованных",
+          "description": "Читать могут только авторизованные пользователи."
+        }
+      },
+      "button": "Создать",
+      "validation": {
+        "min_length": "Минимум 3 символа",
+        "max_length": "Максимум 63 символа",
+        "start_char": "Должно начинаться с буквы или цифры",
+        "end_char": "Должно заканчиваться буквой или цифрой",
+        "no_uppercase": "Заглавные буквы запрещены",
+        "allowed_chars": "Только строчные буквы, цифры, дефисы и точки",
+        "no_consecutive_periods": "Нельзя использовать две точки подряд",
+        "no_ip_format": "Нельзя использовать формат IP-адреса"
+      },
+      "error": "Не удалось создать бакет"
+    },
+    "delete": {
+      "title": "Удаление бакета",
+      "warning": "Это действие нельзя отменить. Бакет должен быть пустым.",
+      "label": "Бакет для удаления:",
+      "confirm_label": "Введите название бакета для подтверждения",
+      "button": "Удалить",
+      "error": "Не удалось удалить бакет"
+    },
+    "settings": {
+      "title": "Настройки: {bucket}",
+      "versioning": {
+        "tab": "Версии",
+        "title": "Версионирование",
+        "loading": "Загрузка...",
+        "current_status": "Текущий статус",
+        "enabled_description": "Версии объектов сохраняются",
+        "suspended_description": "Версионирование приостановлено",
+        "disabled_description": "Версионирование не включалось",
+        "warning": "После включения версионирование нельзя отключить полностью — только приостановить. Старые версии при этом не удаляются.",
+        "enable": "Включить",
+        "suspend": "Приостановить"
+      },
+      "object_lock": {
+        "tab": "Object Lock",
+        "title": "Object Lock (WORM)",
+        "loading": "Загрузка...",
+        "enabled": "Object Lock включён",
+        "not_enabled": "Object Lock не включён",
+        "enabled_description": "Объекты защищены от удаления и перезаписи.",
+        "not_enabled_description": "Object Lock можно включить только при создании бакета.",
+        "retention_title": "Настройки удержания",
+        "retention_mode_label": "Режим",
+        "no_retention": "Не задано",
+        "governance": "Governance (можно обойти с правами)",
+        "compliance": "Compliance (нельзя обойти)",
+        "retention_days_label": "Дней",
+        "retention_days_hint": "Сколько дней хранить объекты",
+        "retention_years_label": "Лет",
+        "retention_years_hint": "Сколько лет хранить объекты",
+        "retention_hint": "Укажите либо дни, либо годы — не оба сразу.",
+        "save_button": "Сохранить"
+      },
+      "encryption": {
+        "tab": "Шифрование",
+        "title": "Шифрование",
+        "loading": "Загрузка...",
+        "type_label": "Тип шифрования",
+        "none": "Нет",
+        "sse_s3": "SSE-S3 (AES-256)",
+        "sse_kms": "SSE-KMS",
+        "kms_key_label": "KMS Key ID (опционально)",
+        "kms_key_hint": "Оставьте пустым для ключа по умолчанию",
+        "save_button": "Сохранить"
+      },
+      "lifecycle": {
+        "tab": "Lifecycle",
+        "title": "Правила жизненного цикла",
+        "loading": "Загрузка...",
+        "add_rule": "Добавить правило",
+        "empty": {
+          "title": "Правил нет",
+          "description": "Добавьте правила для автоматического удаления старых объектов"
+        },
+        "form": {
+          "rule_id_label": "ID правила",
+          "prefix_label": "Префикс (опционально)",
+          "expiration_label": "Удалять через (дней)",
+          "status_label": "Статус"
+        },
+        "rule": {
+          "prefix": "Префикс: {prefix}",
+          "expires_after": "Удаляется через {days} дней",
+          "noncurrent_expires": "Старые версии удаляются через {days} дней"
+        },
+        "delete_confirm": "Удалить правило \"{ruleId}\"?"
+      },
+      "tags": {
+        "tab": "Теги",
+        "title": "Теги",
+        "loading": "Загрузка...",
+        "empty": "Тегов нет",
+        "add_title": "Добавить тег",
+        "save_button": "Сохранить"
+      },
+      "policy": {
+        "tab": "Политика",
+        "title": "Политика доступа",
+        "loading": "Загрузка...",
+        "invalid_json": "Невалидный JSON",
+        "edit_hint": "Отредактируйте JSON выше",
+        "no_policy_hint": "Политика не задана. Добавьте политику для управления доступом.",
+        "save_button": "Сохранить",
+        "delete_button": "Удалить"
+      },
+      "acl": {
+        "tab": "ACL",
+        "title": "Список доступа (ACL)",
+        "loading": "Загрузка...",
+        "owner": "Владелец",
+        "grants": "Права",
+        "grantee_types": {
+          "everyone": "Все (публичный)",
+          "authenticated": "Авторизованные"
+        },
+        "hint": "ACL можно менять через S3 API. Для гибкой настройки используйте политики."
+      },
+      "quota": {
+        "tab": "Квота",
+        "title": "Квота",
+        "loading": "Загрузка...",
+        "admin_required": "Нужны права админа",
+        "admin_required_description": "Для управления квотами нужны права buckets:read/write.",
+        "current_quota": "Текущая квота",
+        "max_size": "Макс. размер",
+        "max_objects": "Макс. объектов",
+        "enable_quota": "Включить квоту",
+        "enable_quota_description": "Ограничить размер и количество объектов",
+        "max_size_gb_label": "Макс. размер (ГБ)",
+        "max_objects_label": "Макс. объектов",
+        "unlimited_hint": "Пусто = без лимита",
+        "save_button": "Сохранить"
+      }
+    }
+  },
+  "browser": {
+    "go_back": "Назад",
+    "back_to_buckets": "К бакетам",
+    "filter_placeholder": "Поиск...",
+    "bucket_settings": "Настройки",
+    "access_denied": {
+      "title": "Нет доступа",
+      "description": "У вас нет прав на просмотр этого бакета. Возможно, он принадлежит другому пользователю."
+    },
+    "empty": {
+      "title": "Тут пусто",
+      "description": "Загрузите файлы или создайте папку.",
+      "action": "Загрузить файлы"
+    },
+    "no_matches": {
+      "title": "Ничего не найдено",
+      "description": "Нет файлов или папок по запросу '{query}'"
+    },
+    "table": {
+      "name": "Название",
+      "size": "Размер",
+      "modified": "Изменён"
+    },
+    "actions": {
+      "download": "Скачать",
+      "copy_url": "Копировать ссылку",
+      "copy_s3_uri": "Копировать S3 URI",
+      "delete": "Удалить"
+    },
+    "drag_drop": {
+      "title": "Перетащите файлы сюда",
+      "description": "Файлы загрузятся в {path}"
+    },
+    "delete_progress": "Удаление {current}/{total}...",
+    "delete_confirm": "Удалить \"{name}\"?",
+    "delete_confirm_multiple": "Удалить {n} файл? | Удалить {n} файлов?",
+    "delete_partial_success": "Удалено {success}, не удалось удалить {failed}",
+    "preview": {
+      "not_available": "Предпросмотр недоступен для этого типа файлов",
+      "video_not_supported": "Браузер не поддерживает воспроизведение видео.",
+      "audio_not_supported": "Браузер не поддерживает воспроизведение аудио.",
+      "details": "Подробности",
+      "size": "Размер",
+      "last_modified": "Изменён",
+      "etag": "ETag",
+      "storage_class": "Storage Class",
+      "s3_uri": "S3 URI",
+      "copy_url": "Копировать ссылку",
+      "copy_uri": "Копировать URI"
+    },
+    "stats": {
+      "loading": "Загрузка...",
+      "bucket": "Бакет",
+      "bucket_total_size": "Размер бакета",
+      "this_folder": "Эта папка",
+      "bucket_owner": "Владелец",
+      "total_objects": "Объектов",
+      "total_size": "Размер",
+      "last_modified": "Изменён",
+      "quota_usage": "Квота"
+    }
+  },
+  "objects": {
+    "filter_placeholder": "Фильтр...",
+    "go_back": "Назад",
+    "empty_folder": {
+      "title": "Папка пуста",
+      "description": "Загрузите файлы или создайте новую папку."
+    },
+    "no_matches": {
+      "title": "Ничего не найдено",
+      "description": "Попробуйте изменить фильтр."
+    },
+    "row": {
+      "download": "Скачать",
+      "copy_url": "Скопировать URL",
+      "copy_s3_uri": "Скопировать S3 URI",
+      "delete": "Удалить"
+    },
+    "delete": {
+      "title": "Удалить файл",
+      "title_bulk": "Удалить файлы",
+      "warning": "Это действие необратимо. Файл будет удалён навсегда.",
+      "warning_bulk": "Это действие необратимо. Все выбранные файлы будут удалены навсегда.",
+      "file": "Файл",
+      "folder": "Папка",
+      "items_count": "{n} файл | {n} файла | {n} файлов",
+      "cannot_undo": "Это действие необратимо",
+      "button": "Удалить",
+      "button_bulk": "Удалить {n} файл | Удалить {n} файла | Удалить {n} файлов"
+    },
+    "time": {
+      "just_now": "Только что",
+      "mins_ago": "{n} мин. назад",
+      "hours_ago": "{n} ч. назад",
+      "days_ago": "{n} д. назад",
+      "weeks_ago": "{n} нед. назад"
+    },
+    "preview": {
+      "expand": "Развернуть (Пробел)",
+      "open_new_tab": "Открыть в новой вкладке",
+      "close": "Закрыть",
+      "double_click_expand": "Двойной клик для увеличения",
+      "double_click_full_size": "Двойной клик для полного размера",
+      "preview_not_available": "Предпросмотр недоступен для этого типа файла",
+      "video_not_supported": "Потоковое видео не поддерживается",
+      "video_not_supported_full": "Потоковое воспроизведение видео не поддерживается с presigned URL из-за ограничений Range-запросов.",
+      "audio_not_supported": "Ваш браузер не поддерживает воспроизведение аудио.",
+      "failed_to_load_image": "Не удалось загрузить изображение",
+      "open": "Открыть",
+      "open_in_browser": "Открыть в браузере",
+      "download": "Скачать",
+      "download_instead": "Скачать вместо просмотра",
+      "copy_url": "Скопировать URL",
+      "copy_uri": "Скопировать URI",
+      "details": "Детали",
+      "size": "Размер",
+      "last_modified": "Изменён",
+      "etag": "ETag",
+      "storage_class": "Класс хранения",
+      "s3_uri": "S3 URI",
+      "zoom_out": "Уменьшить (-)",
+      "zoom_in": "Увеличить (+)",
+      "rotate": "Повернуть",
+      "previous": "Назад (←)",
+      "next": "Вперёд (→)",
+      "close_esc": "Закрыть (Esc)",
+      "navigate": "Навигация",
+      "zoom": "Масштаб"
+    },
+    "code_preview": {
+      "file_too_large": "Файл слишком большой для предпросмотра",
+      "exceeds_limit": "{size} МБ превышает лимит {limit} МБ",
+      "loading_content": "Загрузка содержимого...",
+      "file_truncated": "Файл обрезан. Скачайте для полного просмотра.",
+      "preparing_preview": "Подготовка предпросмотра..."
+    }
+  },
+  "uploads": {
+    "title": "Загрузки",
+    "active": "({n} активных)",
+    "done": "{n} готово",
+    "failed": "{n} ошибок",
+    "no_uploads": "Нет загрузок",
+    "cancel": "Отменить",
+    "remove": "Убрать"
+  },
+  "users": {
+    "title": "Пользователи",
+    "search_placeholder": "Поиск...",
+    "empty": {
+      "title": "Пользователей пока нет",
+      "description": "Создайте первого пользователя."
+    },
+    "create_error": "Не удалось создать пользователя",
+    "no_permission": {
+      "title": "Нет доступа",
+      "description": "У вас нет прав на просмотр пользователей.",
+      "capability_required": "Нужен capability {cap}."
+    },
+    "empty": "Пользователей не найдено",
+    "table": {
+      "user": "Пользователь",
+      "display_name": "Имя",
+      "status": "Статус",
+      "objects": "Объектов",
+      "storage": "Занято",
+      "max_buckets": "Макс. бакетов"
+    },
+    "count": "{n} пользователь | {n} пользователей",
+    "filtered_from": "из {total}",
+    "pagination": {
+      "showing": "{from}–{to} из {total}",
+      "page": "Страница {current} из {total}"
+    },
+    "detail": {
+      "user_information": "Информация",
+      "user_id": "User ID",
+      "copy_user_id": "Скопировать ID",
+      "display_name": "Имя",
+      "email": "Email",
+      "tenant": "Tenant",
+      "max_buckets": "Макс. бакетов",
+      "capabilities": "Capabilities",
+      "none": "Нет",
+      "account_status": "Статус аккаунта",
+      "active_description": "Пользователь активен.",
+      "suspended_description": "Пользователь заблокирован.",
+      "enable_user": "Разблокировать",
+      "suspend_user": "Заблокировать",
+      "quotas": {
+        "title": "Квоты",
+        "user_quota": "Квота пользователя",
+        "bucket_quota": "Квота бакета (по умолчанию)",
+        "max_size": "Макс. размер",
+        "max_objects": "Макс. объектов",
+        "current_usage": "Использовано",
+        "storage_used": "Занято"
+      },
+      "access_keys": {
+        "title": "Ключи доступа",
+        "empty": "Нет ключей",
+        "key_number": "Ключ {n}",
+        "copy_access_key": "Скопировать ключ",
+        "secret_hidden": "Secret Key не показывается в целях безопасности."
+      },
+      "buckets": {
+        "title": "Бакеты",
+        "empty": "У этого пользователя нет бакетов"
+      }
+    },
+    "create": {
+      "title": "Создание пользователя",
+      "description": "Создайте нового пользователя RGW с S3 ключами.",
+      "button": "Создать",
+      "basic_info": "Основная информация",
+      "user_id": {
+        "label": "ID пользователя",
+        "hint": "Только строчные буквы, цифры и дефисы (1-64 символа)",
+        "validation": {
+          "required": "ID пользователя обязателен",
+          "max_length": "ID пользователя должен быть не более 64 символов",
+          "start_char": "ID должен начинаться с буквы или цифры",
+          "allowed_chars": "ID может содержать только строчные буквы, цифры и дефисы",
+          "no_spaces": "ID не может содержать пробелы"
+        }
+      },
+      "tenant": {
+        "show": "Показать Tenant",
+        "label": "Tenant",
+        "hint": "Опциональное пространство имён для мультитенантности"
+      },
+      "display_name": {
+        "label": "Отображаемое имя",
+        "validation": {
+          "required": "Отображаемое имя обязательно"
+        }
+      },
+      "email": {
+        "label": "Email",
+        "validation": {
+          "invalid": "Введите корректный email адрес"
+        }
+      },
+      "max_buckets": {
+        "label": "Макс. бакетов",
+        "unlimited": "Неограниченно",
+        "custom": "Указать"
+      },
+      "suspended": {
+        "label": "Заблокирован",
+        "tooltip": "Пользователь будет создан, но не сможет использовать ресурсы"
+      },
+      "system_user": {
+        "label": "Системный пользователь",
+        "tooltip": "Системные пользователи имеют повышенные привилегии"
+      },
+      "credentials": {
+        "section": "S3 ключи",
+        "auto_generate": "Сгенерировать автоматически",
+        "access_key": {
+          "label": "Access Key",
+          "validation": {
+            "min_length": "Access key должен быть не менее 16 символов"
+          }
+        },
+        "secret_key": {
+          "label": "Secret Key",
+          "validation": {
+            "min_length": "Secret key должен быть не менее 32 символов"
+          }
+        }
+      },
+      "user_quota": {
+        "section": "Квота пользователя",
+        "enable": "Включить квоту пользователя",
+        "max_size": "Макс. размер",
+        "max_objects": "Макс. объектов"
+      },
+      "bucket_quota": {
+        "section": "Квота бакета (по умолчанию)",
+        "enable": "Включить квоту бакета",
+        "max_size": "Макс. размер",
+        "max_objects": "Макс. объектов"
+      },
+      "capabilities": {
+        "section": "Capabilities (расширенные)",
+        "no_permission": "Вы не можете назначать capabilities. У вашего аккаунта нет административных capabilities.",
+        "hint": "Вы можете назначать capabilities до своего уровня доступа.",
+        "types": {
+          "buckets": "Бакеты",
+          "users": "Пользователи",
+          "usage": "Статистика",
+          "metadata": "Метаданные",
+          "zone": "Зона"
+        },
+        "permissions": {
+          "none": "Нет",
+          "read": "Чтение",
+          "write": "Запись",
+          "full": "Полный доступ"
+        }
+      }
+    },
+    "credentials_modal": {
+      "title": "Пользователь создан",
+      "warning_title": "Сохраните эти данные",
+      "warning_description": "Secret Key нельзя получить позже. Сохраните его в безопасном месте.",
+      "credentials_section": "S3 ключи",
+      "access_key": "Access Key",
+      "secret_key": "Secret Key",
+      "copy": "Скопировать",
+      "copied": "Скопировано",
+      "not_available": "(недоступно)",
+      "no_credentials": "Ключи не были сгенерированы для этого пользователя.",
+      "done": "Готово"
+    }
+  },
+  "analytics": {
+    "title": "Статистика",
+    "unavailable": {
+      "title": "Статистика недоступна",
+      "description": "У вас нет capability 'usage:read' для просмотра статистики."
+    },
+    "filters": {
+      "title": "Фильтры",
+      "period": {
+        "label": "Период",
+        "all_time": "Всё время",
+        "today": "Сегодня",
+        "last_7_days": "7 дней",
+        "last_30_days": "30 дней"
+      },
+      "user": {
+        "label": "Пользователь",
+        "all_users": "Все"
+      },
+      "bucket": {
+        "label": "Бакет",
+        "all_buckets": "Все"
+      }
+    },
+    "summary": {
+      "bytes_received": "Получено",
+      "bytes_sent": "Отправлено",
+      "total_operations": "Операций",
+      "success_rate": "Успешных"
+    },
+    "charts": {
+      "bandwidth_by_user": "Трафик по пользователям",
+      "operations_breakdown": "Операции по типам",
+      "no_bandwidth_data": "Нет данных о трафике",
+      "no_operations_data": "Нет данных об операциях",
+      "received": "Получено",
+      "sent": "Отправлено"
+    },
+    "usage_by_user": {
+      "title": "По пользователям",
+      "table": {
+        "user": "Пользователь",
+        "received": "Получено",
+        "sent": "Отправлено",
+        "operations": "Операций",
+        "success_rate": "Успех"
+      },
+      "empty": "Нет данных"
+    },
+    "operations": {
+      "get_obj": "GET Object",
+      "put_obj": "PUT Object",
+      "delete_obj": "DELETE Object",
+      "list_bucket": "List Bucket",
+      "stat_bucket": "Stat Bucket",
+      "get_acls": "GET ACL",
+      "put_acls": "PUT ACL",
+      "get_cors": "GET CORS",
+      "put_cors": "PUT CORS",
+      "delete_cors": "DELETE CORS",
+      "create_bucket": "Create Bucket",
+      "delete_bucket": "Delete Bucket",
+      "list_buckets": "List Buckets",
+      "head_obj": "HEAD Object",
+      "copy_obj": "COPY Object",
+      "multi_object_delete": "Multi-Delete",
+      "init_multipart": "Init Multipart",
+      "complete_multipart": "Complete Multipart",
+      "abort_multipart": "Abort Multipart",
+      "list_multipart": "List Multipart",
+      "upload_part": "Upload Part"
+    }
+  }
+}
