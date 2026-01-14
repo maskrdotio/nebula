@@ -6,7 +6,6 @@ import {
   CreateBucketCommand,
   DeleteBucketCommand,
   HeadObjectCommand,
-  GetObjectCommand,
   PutObjectCommand,
   DeleteObjectCommand,
   DeleteObjectsCommand,
@@ -32,8 +31,8 @@ import {
   ListObjectVersionsCommand,
   type BucketCannedACL,
 } from '@aws-sdk/client-s3'
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { getPresetById, isProxyPreset } from '../../utils/presets'
+import { createObjectProxyUrl } from './object.get'
 import type { S3ProxyRequest, ProxyResponse, ProxyCredentials } from '../../../app/types/connection'
 
 // Node.js Buffer type for server-side code
@@ -168,15 +167,8 @@ const operations: Record<string, OperationHandler> = {
     }
   },
 
-  GetPresignedUrl: async (client, params) => {
-    const command = new GetObjectCommand({
-      Bucket: params['bucket'] as string,
-      Key: params['key'] as string,
-    })
-    const expiresIn = (params['expiresIn'] as number) || 900 // Default 15 minutes
-    const url = await getSignedUrl(client, command, { expiresIn })
-    return { url, expiresIn }
-  },
+  // Note: GetPresignedUrl is handled specially in the main handler
+  // to return proxy URLs instead of direct S3 presigned URLs
 
   PutObject: async (client, params) => {
     // For proxy mode, we expect the body to be base64 encoded
@@ -501,6 +493,33 @@ export default defineEventHandler(async (event): Promise<ProxyResponse> => {
       statusCode: 500,
       message: 'Failed to create S3 client',
     })
+  }
+
+  // Special handling for GetPresignedUrl - returns proxy URL instead of direct S3 URL
+  // This ensures objects are accessible even when the S3 endpoint is internal/unreachable
+  if (operation === 'GetPresignedUrl') {
+    if (shouldDestroyClient) client.destroy()
+
+    const bucket = params['bucket'] as string
+    const key = params['key'] as string
+    const expiresIn = (params['expiresIn'] as number) || 3600
+
+    if (!bucket || !key) {
+      throw createError({
+        statusCode: 400,
+        message: 'Missing required parameters: bucket and key',
+      })
+    }
+
+    const url = createObjectProxyUrl({
+      presetId: presetId || undefined,
+      credentials: credentials || undefined,
+      bucket,
+      key,
+      expiresIn,
+    })
+
+    return { success: true, data: { url, expiresIn } }
   }
 
   // Check if operation is supported
