@@ -209,25 +209,80 @@ const operations: Record<string, OperationHandler> = {
 
   DeleteObjects: async (client, params) => {
     const objects = params['objects'] as Array<{ key: string; versionId?: string }>
-    const result = await client.send(new DeleteObjectsCommand({
-      Bucket: params['bucket'] as string,
-      Delete: {
-        Objects: objects.map((o) => ({ Key: o.key, VersionId: o.versionId })),
-        Quiet: params['quiet'] as boolean | undefined,
-      },
-    }))
-    return {
-      deleted: result.Deleted?.map((d) => ({
+    const bucket = params['bucket'] as string
+
+    // Try bulk delete first
+    try {
+      const result = await client.send(new DeleteObjectsCommand({
+        Bucket: bucket,
+        Delete: {
+          Objects: objects.map((o) => ({ Key: o.key, VersionId: o.versionId })),
+          Quiet: params['quiet'] as boolean | undefined,
+        },
+      }))
+
+      const deleted = result.Deleted?.map((d) => ({
         key: d.Key,
         versionId: d.VersionId,
         deleteMarker: d.DeleteMarker,
-      })) ?? [],
-      errors: result.Errors?.map((e) => ({
+      })) ?? []
+
+      const errors = result.Errors?.map((e) => ({
         key: e.Key,
         code: e.Code,
         message: e.Message,
-      })) ?? [],
+      })) ?? []
+
+      // If bulk delete worked (even partially), return the result
+      if (deleted.length > 0 || errors.length === 0) {
+        return { deleted, errors }
+      }
+
+      // If all items returned AccessDenied errors, fall back to sequential
+      const allAccessDenied = errors.every(e =>
+        e.code === 'AccessDenied' || e.message?.includes('Access Denied')
+      )
+
+      if (!allAccessDenied) {
+        return { deleted, errors }
+      }
+    } catch (error) {
+      // Check if bulk delete command itself failed with AccessDenied
+      const errorMsg = error instanceof Error ? error.message : String(error)
+      const errorName = error instanceof Error ? error.name : ''
+      if (!errorMsg.includes('AccessDenied') && !errorMsg.includes('Access Denied') && errorName !== 'AccessDenied') {
+        throw error
+      }
     }
+
+    // Fall back to sequential single deletes
+    const deleted: Array<{ key?: string; versionId?: string; deleteMarker?: boolean }> = []
+    const errors: Array<{ key?: string; code?: string; message?: string }> = []
+
+    for (const obj of objects) {
+      try {
+        const result = await client.send(new DeleteObjectCommand({
+          Bucket: bucket,
+          Key: obj.key,
+          VersionId: obj.versionId,
+        }))
+        deleted.push({
+          key: obj.key,
+          versionId: result.VersionId,
+          deleteMarker: result.DeleteMarker,
+        })
+      } catch (error) {
+        const errorMsg = error instanceof Error ? error.message : String(error)
+        const errorName = error instanceof Error ? error.name : 'UnknownError'
+        errors.push({
+          key: obj.key,
+          code: errorName,
+          message: errorMsg,
+        })
+      }
+    }
+
+    return { deleted, errors }
   },
 
   CopyObject: async (client, params) => {
